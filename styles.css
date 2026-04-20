@@ -1,0 +1,594 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+/* ROOT */
+:root {
+  --color-pri: #ffffff;
+  --color-sec: #f2f2f2;
+  --color-ter: #d9d9d9;
+  --color-cuar: #8c8c8c;
+  --color-quin: #595959;
+  --color-sext: #262626;
+  --btn-color: #0071e3;
+  --tx-color: #0d0d0d;
+  --tx-sec: #ffffff;
+  --shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 0 7px rgba(0, 0, 0, 0.3); 
+
+  /* Texto base */
+  --fs-base: clamp(0.95rem, 1.1vw, 1.1rem);
+
+  /* Subtítulos */
+  --fs-subtitle: clamp(1.2rem, 2.2vw, 1.8rem);
+
+  /* Títulos */
+  --fs-h2: clamp(1.6rem, 3vw, 2.4rem);
+  --fs-h1: clamp(2.4rem, 4.5vw, 5rem);
+
+  /* Texto pequeño */
+  --fs-small: clamp(0.8rem, 0.9vw, 0.9rem);
+}
+
+/* ============ GENERAL Y RESET ============ */
+* {
+  -webkit-user-select: none; /* Chrome, Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Edge antiguo */
+  user-select: none;         /* Estándar */
+}
+
+body {
+  scroll-behavior: smooth;
+  font-size: var(--fs-base);
+  font-family: 'Poppins';
+}
+
+html, body, main {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* ============ HEADER ============ */
+header {
+  width: 100dvw;
+  height: 70px;
+  background-color: var(--color-pri);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 80;
+}
+
+.header-logo-mobile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+.header-logo-mobile img {
+  margin: auto;
+  width: 120px;
+}
+
+#lang {
+  border-style: none;
+  box-shadow: var(--shadow);
+  border-radius: 20%;
+  width: 40px;
+  height: 30px;
+  color: var(--tx-color);
+  margin: 25px;
+}
+
+/* ============ BOTÓN HAMBURGUESA ============ */
+.menu-toggle {
+  position: relative;
+  background: none;
+  border: none;
+  width: 35px;
+  height: 35px;
+  z-index: 20;
+  margin: 15px;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  display: block;
+  background-color: var(--tx-color);
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+  position: absolute;
+  transition: all 0.2s ease;
+}
+
+.hamburger {
+  width: 22px;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+.menu-toggle.active .hamburger {
+  background-color: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* ============ OVERLAY Y NAVBAR ============ */
+.menu-overlay {
+  position: fixed;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: none;
+}
+
+.menu-overlay.active {
+  display: block;
+  z-index: 90;
+}
+
+.navbar {
+  position: fixed;
+  height: 100dvh;
+  width: 80dvw;
+  background-color: var(--color-pri);
+  box-shadow: var(--shadow);
+  z-index: 1050;
+  pointer-events: none;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.navbar ul {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  padding: 15px;
+  list-style: none;
+}
+
+.navbar a {
+  display: block;
+  text-decoration: none;
+  color: var(--tx-color);
+  font-weight: 600;
+  font-size: var(--fs-subtitle);
+}
+
+/* ============ ENCABEZADO DEL MENÚ ============ */
+.menu-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: end;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  height: 70px;
+}
+
+.menu-logo-container {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  align-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.menu-logo {
+  width: 130px;
+}
+
+.close-menu {
+  padding: 0;
+  margin-right: 25px;
+  background: none;
+  border: none;
+  font-size: var(--fs-h2);
+  color: var(--tx-color);
+}
+
+/* ============ CONTENIDO PRINCIPAL ============ */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: 100dvw;
+  height: 80dvh;
+  position: relative;
+}
+
+.video-fondo {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-contenido {
+  position: absolute;
+  bottom: 0;
+  top: 10%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  margin: clamp(3.5rem, 4vw, 6.5rem);
+}
+
+.contenido-superpuesto {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.contenido-superpuesto h1 {
+  margin: 0;
+  font-size: var(--fs-h1);
+  font-family: 'Poppins';
+  font-weight: bold;
+  text-shadow: var(--shadow);
+  color: var(--tx-sec);
+}
+
+.contenido-superpuesto p {
+  margin: 0;
+  color: var(--tx-sec);
+  font-size: var(--fs-subtitle);
+  text-shadow: var(--shadow);
+}
+
+.btn-servicios {
+  display: flex;
+  box-sizing: border-box;
+  background-color: var(--btn-color);
+  border-radius: 2rem;
+  & a {
+    padding: 15px;
+    margin: auto;
+    color: var(--tx-sec);
+    text-decoration: none;
+    font-size: var(--fs-subtitle);
+  }
+}
+
+/* Works */
+.works {
+  display: flex;
+}
+
+.container-works {
+  display: flex;
+  width: 100dvw;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.container-img {
+  width: 20%;
+}
+
+/* Los Servicios Destacados*/
+
+.servicios h2 {
+  padding: 20px;
+  font-size: var(--fs-h2);
+  margin: 0 20px;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--tx-color);
+}
+
+.descripcion {
+  margin: 20px 30px;
+}
+
+/* ============ CARRUSEL AUTOMÁTICO ============ */
+.servicios {
+  width: 100dvw;
+  display: flex;
+  margin: 30px 0;
+}
+
+.servicios-cartel {
+  display: flex;
+  width: 100%;
+  background-color: var(--color-sec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.group{
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-bottom: 10px;
+  margin: 0;
+}
+
+.carousel {
+  margin: 0 auto;
+  padding-bottom: 50px;
+  width: 100dvw;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+/* Botones */
+.prev,
+.next {
+  position: absolute;
+  bottom: 10px;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+
+  background-color: var(--color-sext);
+  color: var(--color-pri);
+  font-size: 1.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.prev {
+  right: 65px; /* espacio para el botón next */
+}
+
+.next {
+  right: 20px;
+}
+
+.prev:active,
+.next:active {
+  transform: scale(0.9);
+}
+
+.prev.disabled,
+.next.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  margin: 5px 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: var(--tx-sec);
+  margin: 0 10px;
+  flex: 0 0 18rem;
+  background-color: var(--color-sext);
+  border-radius: 1em;
+  text-align: center;
+  align-content: center;
+  box-sizing: border-box;
+  & .information {
+    color: var(--tx-sec);
+    text-decoration: none;
+    background-color: var(--btn-color);
+    padding: 10px;
+    width: 50%;
+    border-radius: 1em;
+    align-self: center;
+    margin-bottom: 15px;
+  }
+  & .img-container {
+  height: 300px;
+  margin: 10px;
+  border-radius: 1em;
+  }
+  & .img-container img {
+  height: 100%;
+  object-fit: contain;
+  }
+}
+
+.card h3 {
+  align-self: flex-start;
+  font-size: var(--fs-subtitle);
+  margin-left: 20px;
+}
+
+.container-information {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+  gap: 10px;
+}
+
+.cotizar {
+  margin-bottom: 15px;
+  color: var(--tx-sec);
+  text-decoration: none;
+  background-color: transparent;
+  border: 3px solid var(--btn-color);
+  padding: 8px;
+  width: 30%;
+  border-radius: 1em;
+  align-self: center;
+  box-sizing: border-box;
+}
+
+.card:first-child {
+  margin-left: 30px;
+}
+
+.card:last-child {
+  margin-right: 30px;
+}
+
+/* ============ Ventajas de WhiteDs ============ */
+.container-why {
+  display: flex;
+  text-align: center;
+  flex-flow: column nowrap;
+}
+.container-why>h2 {
+  font-size: var(--fs-h2);
+}
+
+.why-list {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.card-why {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  font-size: var(--fs-subtitle);
+  font-weight: 600;
+  margin: 0 30px;
+}
+
+.card-why svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* ============ BOTÓN FLOTANTE DE WHATSAPP ============ */
+.whatsapp-float {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 25;
+  background: #fff;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
+}
+
+
+/* ============ FOOTER ============ */
+footer {
+  background-color: var(--color-sext);
+  color: var(--tx-sec);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-section {
+  text-align: left;
+}
+
+.social-title {
+  font-size: 14px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+footer .social-icons a img {
+  width: 18px;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.footer-line {
+  border-top: 1px solid #fff;
+  margin: 16px 0 8px;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.logo-inicio img {
+  max-width: 80%;
+  height: auto;
+}
